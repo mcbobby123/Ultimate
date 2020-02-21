@@ -49,6 +49,7 @@ io.on('connection',(socket)=>{
         console.log(players);
     });
     socket.on('play',([boardIndex,subBoardIndex])=>{
+        console.log(board);
         board[boardIndex][subBoardIndex]=team;
         if(checkWin(board[boardIndex])){
             greaterBoard[boardIndex]=turn;
@@ -71,7 +72,7 @@ server.listen(port,()=>console.log(`Booted on Port ${port}`));
 function checkWin(grid){
     for(let i = 0; i < 3; i++){
         if(g(0,i)===g(1,i)&&g(0,i)===g(2,i)&&g(0,i)!==0) return g(0,i);
-        if(g(i,0)===g(i,1)&&g(0,i)===g(i,2)&&g(i,0)!==0) return g(i,0);
+        if(g(i,0)===g(i,1)&&g(i,0)===g(i,2)&&g(i,0)!==0) return g(i,0);
     }
     if(g(0,0)!==0&&g(0,0)===g(1,1)&&g(0,0)===g(2,2)) return g(0,0);
     if(g(0,2)!==0&&g(0,2)===g(1,1)&&g(0,2)===g(2,0)) return g(0,2);
