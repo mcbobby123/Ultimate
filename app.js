@@ -23,6 +23,10 @@ let greaterBoard;
  * @type {number}
  */
 let turn;
+/**
+ * @type {number}
+ */
+let sector;
 
 const turnMap = [0,2,1];
 
@@ -32,6 +36,7 @@ io.on('connection',(socket)=>{
         board = new Array(9).fill(0).map(()=>new Array(9).fill(0));
         greaterBoard = new Array(9).fill(0);
         turn = 1;
+        sector = -1;
     }
     if(!players.some(p=>p.team===1)) team=1;
     if(!team&&!players.some(p=>p.team===2)) team=2;
@@ -52,13 +57,13 @@ io.on('connection',(socket)=>{
                 if(greaterBoard[i]) board[i]=new Array(9).fill(greaterBoard[i]);
             }
         }
-        let sector = subBoardIndex;
+        sector = subBoardIndex;
         if(!board[subBoardIndex].includes(0)) sector = -1;
         turn=turnMap[turn];
         io.emit('update',{board,turn,sector});
     })
     console.log(players);
-    socket.emit('update',{me:team,board,turn})
+    socket.emit('update',{me:team,board,turn,sector})
 });
 
 server.listen(port,()=>console.log(`Booted on Port ${port}`));

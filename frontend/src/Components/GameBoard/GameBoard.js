@@ -4,6 +4,8 @@ import Grid from '../Grid/Grid';
 import SubBoard from '../SubBoard/SubBoard';
 import socketIOClient from 'socket.io-client';
 
+const playerNames = ['a Spectator','Red','Blue'];
+
 class GameBoard extends React.Component{
 
     state={
@@ -37,7 +39,7 @@ class GameBoard extends React.Component{
                     <Grid type={SubBoard} legal={this.state.sector} callup={this.receivePlay} board={this.state.board}/>
                 </div>
                 <div className="GameBoardSubtitle">
-                    <span>{"You are " + (this.state.me===1?"Red":"Blue")}</span>
+                    <span>{"You are " + playerNames[this.state.me]}</span>
                     <span>{this.state.turn===this.state.me?"It's your turn!":"Waiting for opponent to play."}</span>
                 </div>
             </React.Fragment>
