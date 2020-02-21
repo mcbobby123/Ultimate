@@ -1,0 +1,13 @@
+.GameBoard {
+    margin:auto;
+}
+
+.GameBoardSubtitle {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 180%;
+}
+
+.GameBoardSubtitle span{
+    margin: 0 20px;
+}
